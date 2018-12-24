@@ -5,10 +5,9 @@ const userInput = readline.createInterface({
 });
 
 var utility1 = require('./Utility.js');
-
-
+input();
 function input() {
-    userInput.question("How many elements enter = ", function (n) {
+    userInput.question("How many string  enter  in array", function (n) {
         addValues(n);
 
     });
@@ -23,22 +22,22 @@ function addValues(n) {
 
     function add(len) {
         if (len > 0) {
-            userInput.question("Enter elements = ", (i) => {
-                arr.push(parseInt(i));
+            userInput.question("Enter string = ", (i) => {
+                arr.push(i);
                 len--;
                 add(len)
             });
 
         }
         else {
-            userInput.question("Enter element to search = ",(target)=>
-            {
-                utility1.binarySearch(arr,target);
+            userInput.question("Enter string to search = ", (target) => {
+                utility1.binarySearchForString(arr, target);
             });
         }
     }
 
 
 
-} input();
+}
+
 

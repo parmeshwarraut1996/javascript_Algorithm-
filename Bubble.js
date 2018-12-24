@@ -6,7 +6,7 @@ const userInput = readline.createInterface({
 
 var utility1 = require('./Utility.js');
 
-
+input();
 function input() {
     userInput.question("How many elements enter = ", function (n) {
         addValues(n);
@@ -31,14 +31,13 @@ function addValues(n) {
 
         }
         else {
-            userInput.question("Enter element to search = ",(target)=>
-            {
-                utility1.binarySearch(arr,target);
-            });
+
+            utility1.bubbleSort(n, arr);
         }
     }
+}
 
 
 
-} input();
+
 
