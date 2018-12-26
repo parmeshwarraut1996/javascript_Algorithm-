@@ -1,52 +1,54 @@
-const readline = require('readline');
-const userInput = readline.createInterface({
+var readline = require('readline');
+//var utility = require("./A_utility");
+var UserInput = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-var num;
-var utility = require('./Utility.js');
+
 
 var N = 1;
-n = +process.argv[2];
-console.log(n);
+var min = 0;
+
+var inp = 0;
+
+ n =+process.argv[2];
+
+
 
 for (var i = 1; i <= n; i++) {
     N = N * 2;
 
 }
-console.log(N);
-
+console.log("Assume a number between 0 to " + N + "");
+var max = N;
+var mid = min + max / 2;
 var min = 0;
-var high = N;
-var mid = Math.round((high - min) / 2);
-console.log("Enter value between " +min+ " and " +high);
-guessNumber(min, mid, high);
-function guessNumber(min, mid, high) {
-    console.log(" mid =  " + mid);
-    console.log("Is your number higher than mid then press 1 = " + mid);
-    console.log("Is you lower than mid then press 2 = " + mid);
-    userInput.question("Enter choice = ", (ch) => {
-        recursive(ch)
+number(min, max, mid);
+
+function number(min, max, mid) {
+
+    console.log(" 3 :- Yes," + mid + " is my number "); +
+    console.log(" 1 :- Higher than mid =  " + mid);
+    console.log(" 2 :- Lower than  mid " + mid);
+    UserInput.question(" Enter your choice", (inp) => {
+        input(inp);
     });
-    function recursive(ch) {
-        if (ch == 1) {
+
+    function input(inp) {
+
+        if (inp == 1) {
             min = mid;
-            mid = Math.round((high - min) / 2);
-            guessNumber(min, mid, high);
+            mid = Math.floor((min + max) / 2);
+            number(min, max, mid)
         }
-        if (ch == 2) {
-
-            high = mid;
-            mid = Math.round((high - min) / 2);
-            guessNumber(min, mid, high);
+        if (inp == 2) {
+            max = mid;
+            mid = Math.floor((min + max) / 2);
+            number(min, max, mid)
         }
-        if (ch == 3) {
-            console.log("Your number is " + mid);
 
+        if (inp == 3) {
+            console.log(+mid + " is your number");
         }
-        
-        
-        console.log("Guessed number is" + mid);
-
     }
 }
