@@ -6,7 +6,7 @@ const userInput = readline.createInterface({
 
 var utility1 = require('./Utility.js');
 
-input();
+
 function input() {
     userInput.question("Enter number  = ", (num) => {
        // utility1.toBinary(num);
@@ -16,4 +16,4 @@ function input() {
 
     });
 
-}
+} input();

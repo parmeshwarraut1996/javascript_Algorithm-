@@ -8,7 +8,7 @@ var utility1 = require('./Utility.js');
 
 
 function input() {
-    userInput.question("How many elements enter = ", function (n) {
+    userInput.question("How many elements enter in array = ", function (n) {
         addValues(n);
 
     });

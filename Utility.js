@@ -1,9 +1,11 @@
-const readline = require('readline');
-const userInput = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require('readline');
+// const userInput = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
 module.exports = {
+
     /**
 * Aim: One   string   is   an   anagram   of   another   if   the   second   is   simply   a
 rearrangement   of   the   first.   For   example,   'heart'   and   'earth'   are   anagrams... .
@@ -13,6 +15,8 @@ rearrangement   of   the   first.   For   example,   'heart'   and   'earth'   a
 */
 
     checkAnagramsString(str1, str2) {
+        str1=str1+"";
+        str2=str2+"";
         var len1 = str1.length;
         var len2 = str2.length;
         if (len1 == len2) {
@@ -34,11 +38,12 @@ rearrangement   of   the   first.   For   example,   'heart'   and   'earth'   a
             }
             if (notFound == 1) {
                 console.log("Entered string are not Anagram");
+                return true;
 
             }
             else {
                 console.log("Entered string  Anagram");
-
+              return false;
             }
 
 
@@ -71,8 +76,13 @@ rearrangement   of   the   first.   For   example,   'heart'   and   'earth'   a
                 console.log(arr[i]);
 
         }
-        // return arr;
+         //return this.isPalindrome(arr[i]);
     },
+
+    
+        
+
+    
     /**
 * Aim:Extend   the   above   program   to   find   the   prime   numbers   that   are   Anagram   and
 Palindrome
@@ -81,13 +91,13 @@ Palindrome
 * @since 22/12/2018
 */
 
-    primeAnagram(str1, str2) {
-        var len1 = str1.length;
-        var len2 = str2.length;
+    primeAnagram(arr) {
+        var len1 = arr.length;
+        var len2 = arr.length;
         var arr = [];
-        var firstArr = str1.split(' ');
+        var firstArr = arr.split(' ');
 
-        var secondArr = str2.split(' ');
+        var secondArr = arr.split(' ');
         firstArr.sort();
         secondArr.sort();
         if (len1 == len2) {
@@ -138,7 +148,7 @@ Palindrome
         while (left <= right) {
             mid = left + Math.round((right - left) / 2);
             if (arr[mid] == target) {
-                console.log("Element  Present in array = ", target);
+                console.log("Element  Present in array at "+mid+" = "+ target);
                 break;
             }
             else if (arr[mid] < target) {
@@ -286,6 +296,48 @@ Palindrome
         console.log("String's are sorted = " + arr);
 
     },
+    /**
+   * Aim: Write   a   program   with   Static   Functions   to   do   Merge   Sort   of   list   of Strings.
+   * @author Parmeshwar Raut
+   * @version v10.11.0
+   * @since 24/12/2018
+   *@typedef LoadCallback
+   *@type {function}
+      */
+    //type LoadCallback = void;
+
+    mergeSort(arr) {
+        if (arr.length === 1) {
+            // return once we hit an array with a single item
+            return arr;
+        }
+
+        const middle = Math.floor(arr.length / 2); // get the middle item of the array rounded down
+        const left = arr.slice(0, middle);// items on the left side
+        const right = arr.slice(middle); // items on the right side
+
+        return this.merge(this.mergeSort(left), this.mergeSort(right));
+    },
+
+    merge(left, right) {
+        let result = [];
+        let low = 0;
+        let high = 0;
+        let len1 = left.length;
+        let len2 = right.length;
+
+        while (low < len1 && high < len2) {
+            if (left[low] < right[high]) {
+                result.push(left[low]);
+                low++;
+            } else {
+                result.push(right[high]);
+                high++;
+            }
+        }
+
+        return result.concat(left.slice(low)).concat(right.slice(high));
+    },
 
     /**
 * Aim: takes   a   command­line   argument   N,   asks   you   to   think   of   a   number
@@ -296,36 +348,32 @@ questions.
 * @since 24/12/2018
 */
     findNumber(n) {
-        var high=parseInt(Math.pow(2,n));
-        var low=0;
-        console.log("keep a number "+parseInt(high-1));
-        var gnum=this.search(low,high);
-        console.log("Your number is = "+gnum);
-                
+        var high = parseInt(Math.pow(2, n));
+        var low = 0;
+        console.log("keep a number " + parseInt(high - 1));
+        var gnum = this.search(low, high);
+        console.log("Your number is = " + gnum);
+
 
     },
-    search(low,high)
-    {
-        if(high-low===1)
-        {
+    search(low, high) {
+        if (high - low === 1) {
             console.log(low);
-            
-        }
-         var mid=low+(high-low)/2;
-         console.log("mid"+mid);
-         userInput.question("this is your number ",(answer)=>{
-             if(answer===1)
-             {
-                 console.log(search(low,mid));
-                 
-             }else
-             {
-                 console.log(mid,high);
-                 
-             }
-         });
 
-         
+        }
+        var mid = low + (high - low) / 2;
+        console.log("mid" + mid);
+        userInput.question("This is your number ", (answer) => {
+            if (answer === 1) {
+                console.log(search(low, mid));
+
+            } else {
+                console.log(mid, high);
+
+            }
+        });
+
+
     },
 
 
@@ -344,7 +392,6 @@ Change
     vending(amount) {
         var arr = [1, 2, 5, 10, 50, 100, 500, 1000];
         var len = arr.length - 1;
-
         notes(amount);
         function notes(amount) {
             if (amount > 0) {

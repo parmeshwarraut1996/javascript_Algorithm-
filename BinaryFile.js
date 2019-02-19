@@ -6,7 +6,7 @@ const userInput = readline.createInterface({
 
 var utility = require('./Utility.js');
 var fileStream=require('fs');
-
+function input(){
 var f=fileStream.readFileSync('filestring','utf8')
 var arr=f.split(' ');
 console.log(arr);
@@ -20,3 +20,4 @@ userInput.question("Enter string to search in file = ",(target)=>
 
 
     });
+}input();

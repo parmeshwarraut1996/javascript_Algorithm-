@@ -5,7 +5,7 @@ const userInput = readline.createInterface({
 });
 
 var utility1 = require('./Utility.js');
-input();
+
 function input() {
     userInput.question("How many string  enter  in array", function (n) {
         addValues(n);
@@ -38,6 +38,6 @@ function addValues(n) {
 
 
 
-}
+} input();
 
 

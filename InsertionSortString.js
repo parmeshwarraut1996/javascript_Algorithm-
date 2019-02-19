@@ -16,6 +16,8 @@ function input() {
 }
 
 function addValues(n) {
+    if(n === undefined) return 'n is not defined';
+    
     var arr = [];
     var len = parseInt(n);
 
